@@ -12,4 +12,8 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <PropertyGroup>
+  <TargetManifestFiles>manifest1.yml</TargetManifestFiles>
+</PropertyGroup>
+
 </Project>
