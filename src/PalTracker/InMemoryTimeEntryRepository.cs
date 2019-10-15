@@ -7,19 +7,19 @@ namespace PalTracker
     public class InMemoryTimeEntryRepository:ITimeEntryRepository
     {
         public List<TimeEntry> _timeEntry; 
-        public int count;
+        public int count=0;
         
         public InMemoryTimeEntryRepository()
         {
             _timeEntry= new List<TimeEntry>();
-            count =0;
+            count=0;
 
         }
          
         public TimeEntry Create(TimeEntry timeEntry)
         {
             _timeEntry.Add(new TimeEntry(++count,timeEntry.projectId,timeEntry.userId,timeEntry.date,timeEntry.hours));
-            return _timeEntry[_timeEntry.Count -1];
+            return _timeEntry[count-1];
         }
 
         public TimeEntry Find(int v)
@@ -52,7 +52,9 @@ namespace PalTracker
 
         public void Delete(int v)
         {
-           _timeEntry.RemoveAt(v-1);
+           var timeEntry = Find(v);
+           _timeEntry.Remove(timeEntry);
+           count--;
         }
     }
 }
