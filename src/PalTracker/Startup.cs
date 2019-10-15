@@ -31,6 +31,7 @@ namespace PalTracker
                 Environment.GetEnvironmentVariable("WELCOME_MESSAGE")
 
             ));
+            services.AddSingleton<ITimeEntryRepository,InMemoryTimeEntryRepository>();
 
             services.AddSingleton(sp => new CloudFoundryInfo(
                 Environment.GetEnvironmentVariable("PORT"),

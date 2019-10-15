@@ -26,5 +26,9 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
+  },
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "debugType": "portable"
   }
 }
