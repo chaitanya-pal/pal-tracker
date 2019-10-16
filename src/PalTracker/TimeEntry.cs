@@ -4,27 +4,27 @@ namespace PalTracker
 {
     public struct TimeEntry
     {
-        public int projectId;
-        public int userId;
-        public DateTime date;
-        public int hours;
-        public int id;
-
-        public TimeEntry(int v1, int v2, DateTime dateTime, int v3)
+        public long ProjectId;
+        public long UserId;
+        public DateTime Date;
+        public int Hours;
+        public long? Id;
+        
+        public TimeEntry(long v1, long v2, DateTime dateTime, int v3)
         {
-          projectId= v1;
-          userId = v2;
-          hours = v3;
-          id =1;
-          date = dateTime;
+          ProjectId= v1;
+          UserId = v2;
+          Hours = v3;
+          Id = null;
+          Date = dateTime;
         }
 
-        public TimeEntry(int v1, int v2, int v3, DateTime dateTime, int v4)
-        {   this.id = v1;
-            this.projectId = v2;
-            this.date = dateTime;
-            this.userId = v3;
-            this.hours =v4;
+        public TimeEntry(long v1, long v2, long v3, DateTime dateTime, int v4)
+        {   this.Id = v1;
+            this.ProjectId = v2;
+            this.Date = dateTime;
+            this.UserId = v3;
+            this.Hours =v4;
    }
     }
 }

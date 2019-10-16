@@ -24,12 +24,12 @@ namespace PalTracker
                 return new NotFoundResult();
         }
 
-        [HttpPost]
-        // [Route("/time-entries")]
-        public ActionResult Create([FromBody]TimeEntry toCreate)
+       [HttpPost]
+        public IActionResult Create([FromBody] TimeEntry timeEntry)
         {
-            var response = _timeEntryRepository.Create(toCreate);
-            return CreatedAtRoute("GetTimeEntry", new { id = toCreate.id }, response);
+            var createdTimeEntry = _timeEntryRepository.Create(timeEntry);
+
+            return CreatedAtRoute("GetTimeEntry", new {id = createdTimeEntry.Id}, createdTimeEntry);
         }
 
         [HttpGet]

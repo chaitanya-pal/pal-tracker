@@ -7,43 +7,43 @@ namespace PalTracker
     public class InMemoryTimeEntryRepository:ITimeEntryRepository
     {
         public List<TimeEntry> _timeEntry; 
-        public Dictionary<int, TimeEntry> _timeEntry1;
-        public int count=0;
+        public Dictionary<long?, TimeEntry> _timeEntry1;
+        public long count=0;
         
         public InMemoryTimeEntryRepository()
         {
             _timeEntry= new List<TimeEntry>();
-            _timeEntry1 = new Dictionary<int, TimeEntry>();
+            _timeEntry1 = new Dictionary<long?, TimeEntry>();
             count=0;
 
         }
          
         public TimeEntry Create(TimeEntry timeEntry)
         {
-            timeEntry.id = ++count;
-            _timeEntry1.Add(timeEntry.id,timeEntry);
+            timeEntry.Id = ++count;
+            _timeEntry1.Add(timeEntry.Id,timeEntry);
             //_timeEntry.Add(new TimeEntry(++count,timeEntry.projectId,timeEntry.userId,timeEntry.date,timeEntry.hours));
             return _timeEntry1[count];
         }
 
-        public TimeEntry Find(int v)
+        public TimeEntry Find(long v)
         {
            //return _timeEntry.FirstOrDefault(x=>x.id ==v);
            return _timeEntry1.ContainsKey(v) ? _timeEntry1[v] : new TimeEntry();
         }
 
-        public bool Contains(int v)
+        public bool Contains(long v)
         {
         //    return _timeEntry.Exists(x=>x.id == v);
             return _timeEntry1.ContainsKey(v);
         }
 
-        public List<TimeEntry> List()
+        public IEnumerable<TimeEntry> List()
         {
            return _timeEntry1.Values.ToList();
         }
 
-        public TimeEntry Update(int v, TimeEntry timeEntry)
+        public TimeEntry Update(long v, TimeEntry timeEntry)
         {
            
                 // var tempTimeEntry = _timeEntry.IndexOf(timeEntry);
@@ -68,19 +68,19 @@ namespace PalTracker
                 // var result = _timeEntry.IndexOf(timeEntry);
                 
                 // _timeEntry[result]
-
+            timeEntry.Id = v;
            _timeEntry1[v] = timeEntry;
            return _timeEntry1[v];
         }
 
-        // private void test(int id)
+        // private void test(long id)
         // {
         //     (from p in _timeEntry
         //     where p.id == id
         //     select p).u
         // }
 
-        public void Delete(int v)
+        public void Delete(long v)
         {
         //    var timeEntry = Find(v);
         //    _timeEntry.FirstOrDefault(x=>x.id ==v);
